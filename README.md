@@ -35,7 +35,7 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "account created",
         "user":
         {
-          "_id": "<generatedId>",
+          "id": "<generatedId>",
           "name": "<registeredName>",
           "email": "<registeredEmail>",
           "password": "<hashedPassword>"
@@ -99,7 +99,7 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "data found",
         "todos": [
           {
-            "_id": "<id>",
+            "id": "<id>",
             "title": "<title>",
             "description": "<description>"
           }, 
@@ -145,7 +145,7 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "data created",
         "newTodo":
         {
-          "_id": "<generatedId>",
+          "id": "<generatedId>",
           "title": "<registeredTitle>",
           "description": "<registeredDescription>",
           "userId": "<userIdFK>"
@@ -156,13 +156,17 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
     - status: `400`:
       ```json
       {
+        "message": "<authentication message>",
         "err": "<detailedErrors>"
       }
       ```
       Notes:
-      - ERROR `400` is caused by entering *empty title* or *empty description*
-      - ERROR `401` is caused by *not authenticated user* or *unauthorized to access*
-
+      - Messages:
+        - no token assigned
+        - invalid access token
+        - not recognized input data
+      - ERROR `400` is caused by entering *empty title* or *empty description* or 
+    
 - **GET TODO BY ID**
   - URL:
     - **`GET`** *`<SERVER_URL>/todos/:id`*
@@ -172,13 +176,33 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "data found",
         "todo": 
         {
-          "_id": "<id>",
+          "id": "<id>",
           "title": "<title>",
           "description": "<description>"
         }
       }
     ```
   - Error responses:
+    - status: `400`:
+      ```json
+      {
+        "message": "<authentication message>",
+        "err": "<detailedErrors>"
+      }
+      ```
+      Notes:
+      - Messages:
+        - no token assigned
+        - invalid access token
+        - not recognized input data
+      - ERROR `400` is caused by entering *empty title* or *empty description* or 
+    - status: `401`:
+      ```json
+      {
+        "message": "unauthorized to access",
+        "err": "<detailedErrors>"
+      }
+      ```
     - status: `404`:
       ```json
         {
@@ -207,7 +231,7 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "data updated",
         "updatedTodo":
         {
-          "_id": "<id>",
+          "id": "<id>",
           "title": "<registeredTitle>",
           "description": "<registeredDescription>",
           "userId": "<userIdFK>"
@@ -216,14 +240,26 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
       }
     ```
   - Error responses:
-    - status: `401`:
+    - status: `400`:
       ```json
       {
+        "message": "<authentication message>",
         "err": "<detailedErrors>"
       }
       ```
       Notes:
-      - ERROR `401` is caused by *not authenticated user* or *unauthorized to access*
+      - Messages:
+        - no token assigned
+        - invalid access token
+        - not recognized input data
+      - ERROR `400` is caused by entering *empty title* or *empty description* or 
+    - status: `401`:
+      ```json
+      {
+        "message": "unauthorized to access",
+        "err": "<detailedErrors>"
+      }
+      ```
     - status: `404`:
       ```json
         {
@@ -244,7 +280,7 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
         "message": "data deleted",
         "deletedTodo":
         {
-          "_id": "<deletedId>",
+          "id": "<deletedId>",
           "title": "<deletedTitle>",
           "description": "<deletedDescription>",
           "userId": "<userIdFK>"
@@ -252,14 +288,26 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
       }
     ```
   - Error responses:
-    - status: `401`:
+    - status: `400`:
       ```json
       {
+        "message": "<authentication message>",
         "err": "<detailedErrors>"
       }
       ```
       Notes:
-      - ERROR `401` is caused by *not authenticated user* or *unauthorized to access*
+      - Messages:
+        - no token assigned
+        - invalid access token
+        - not recognized input data
+      - ERROR `400` is caused by entering *empty title* or *empty description* or 
+    - status: `401`:
+      ```json
+      {
+        "message": "unauthorized to access",
+        "err": "<detailedErrors>"
+      }
+      ```
     - status: `404`:
       ```json
         {
