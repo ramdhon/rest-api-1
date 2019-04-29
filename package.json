@@ -1,0 +1,32 @@
+{
+  "name": "rest-api-1",
+  "version": "1.0.0",
+  "description": "built with `Express` and `Sequelize`",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon -L app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramdhon/rest-api-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramdhon/rest-api-1/issues"
+  },
+  "homepage": "https://github.com/ramdhon/rest-api-1#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.10.0",
+    "sequelize": "^5.7.6"
+  },
+  "devDependencies": {
+    "dotenv": "^7.0.0"
+  }
+}
