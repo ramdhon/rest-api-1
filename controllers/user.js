@@ -30,11 +30,11 @@ class Controller {
       })
       .then(foundUser => {
         if (!foundUser) {
-          res.status(400).json({ message: 'incorrect username / password' })
+          res.status(400).json({ message: 'invalid username / password' })
         } else {
           let valid = bcrypt.compare(password, foundUser.password);
           if (!valid) {
-            res.status(400).json({ message: 'incorrect username / password' })
+            res.status(400).json({ message: 'invalid username / password' })
           } else {
             let token = jwt.sign({
               id: foundUser.id,

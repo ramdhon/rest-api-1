@@ -6,6 +6,9 @@ const login = require('./login');
 
 const todos = require('./todos');
 
+router.get('/', (req, res) => {
+  res.json('masuk');
+})
 router.use('/register', register);
 router.use('/login', login);
 

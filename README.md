@@ -69,11 +69,11 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
     - status: `400`:
       ```json
       {
-        "err": "<detailedErrors>"
+        "message": "invalid username / password"
       }
       ```
       Notes:
-      - ERROR `400` is caused by entering *empty email* or *empty password* or *invalid name / password*
+      - ERROR `400` is caused by entering *empty email* or *empty password* or *invalid username / password*
 
 
 ### TODOS
@@ -91,6 +91,8 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
     - **`GET`** *`<SERVER_URL>/todos`*
   - URL (filtered):
     - **`GET`** *`<SERVER_URL>/api/todos?title=<KEYWORD>`*
+  - Header(s):
+    - `token`: `String`
   - Expected response (status: `200`):
     ```json
       {
@@ -109,6 +111,18 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
       }
     ```
   - Error responses:
+    - status: `400`:
+      ```json
+        {
+          "message": "<authentication message>",
+        }
+      ```
+      Notes:
+      <br>Messages:
+      - no token assigned
+      - invalid access token
+      - not recognized input data
+
     - status: `404`:
       ```json
         {

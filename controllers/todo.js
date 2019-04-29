@@ -97,7 +97,7 @@ class Controller {
           res.status(404).json({ message: 'data not found to delete', todo});
         } else {
           deletedTodo = todo;
-          return todo.delete()
+          return todo.destroy()
         }
       })
       .then(info => {

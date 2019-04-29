@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 3000;
 
 const router = require('./router');
 
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

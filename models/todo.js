@@ -1,8 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Todo = sequelize.define('Todo', {
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'required'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'required'
+        }
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {});
   Todo.associate = function(models) {
