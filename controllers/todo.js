@@ -16,6 +16,10 @@ class Controller {
           res.status(200).json({ message: 'data found', todos });
         }
       })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ message: 'internal server error', err });
+      })
   }
 
   static create(req, res) {
@@ -31,6 +35,7 @@ class Controller {
       })
       .catch(err => {
         console.log(err);
+        res.status(500).json({ message: 'internal server error', err });
       })
   }
 
@@ -48,6 +53,7 @@ class Controller {
       })
       .catch(err => {
         console.log(err);
+        res.status(500).json({ message: 'internal server error', err });
       })
   }
 
@@ -76,6 +82,7 @@ class Controller {
       })
       .catch(err => {
         console.log(err);
+        res.status(500).json({ message: 'internal server error', err });
       })
   }
   
@@ -98,6 +105,7 @@ class Controller {
       })
       .catch(err => {
         console.log(err);
+        res.status(500).json({ message: 'internal server error', err });
       })
   }
 }
