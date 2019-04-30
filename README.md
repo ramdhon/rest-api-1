@@ -78,14 +78,6 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
 
 ### TODOS
 
-- **PRINT HELLO**
-  - URL:
-    - **`GET`** *`<SERVER_URL>/hello?name=<NAME>`*
-  - Expected response (status: `200`):
-    ```json
-      "Hello, <NAME>"
-    ```
-
 - **GET LIST OF TODOS**
   - URL:
     - **`GET`** *`<SERVER_URL>/todos`*
@@ -101,7 +93,8 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
           {
             "id": "<id>",
             "title": "<title>",
-            "description": "<description>"
+            "description": "<description>",
+            "userId": "<userIdFK>"
           }, 
           {
             ...
@@ -170,6 +163,8 @@ Access the REST API via SERVER_URL = `http://localhost:3000/api`
 - **GET TODO BY ID**
   - URL:
     - **`GET`** *`<SERVER_URL>/todos/:id`*
+  - Header(s):
+    - `token`: `String`
   - Expected response (status: `200`):
     ```json
       {
