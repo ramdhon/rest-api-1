@@ -14,6 +14,10 @@ module.exports = {
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": process.env.DATABASE_URL
+    "username": process.env.PG_USERNAME,
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
+    "host": "127.0.0.1",
+    "dialect": "postgres"
   }
 }
