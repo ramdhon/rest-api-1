@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
         if (todo.UserId != req.decoded.id) {
           res.status(401).json({ message: 'unauthorized to access'});
         } else {
+          req.todo = todo;
           next();
         }
       }

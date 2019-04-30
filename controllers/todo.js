@@ -59,23 +59,12 @@ class Controller {
 
   static update(req, res) {
     const { title, description } = req.body;
-    let updatedTodo = null;
-    Todo
-      .findByPk(req.params.id, {
-        include: [User],
-      })
-      .then(todo => {
-        if (!todo) {
-          res.status(404).json({ message: 'data not found to update', todo});
-        } else {
-          updatedTodo = todo;
-          updatedTodo.title = title || updatedTodo.title;
-          updatedTodo.description = description || updatedTodo.description;
-          return todo.update({
-            title: title || updatedTodo.title,
-            description: description || updatedTodo.description
-          })
-        }
+    let updatedTodo = req.todo;
+    updatedTodo.title = title || updatedTodo.title;
+    updatedTodo.description = description || updatedTodo.description;
+    req.todo.update({
+        title: title || updatedTodo.title,
+        description: description || updatedTodo.description
       })
       .then(info => {
         res.status(200).json({ message: 'data updated', updatedTodo, info });
@@ -87,19 +76,8 @@ class Controller {
   }
   
   static delete(req, res) {
-    let deletedTodo = null;
-    Todo
-      .findByPk(req.params.id, {
-        include: [User],
-      })
-      .then(todo => {
-        if (!todo) {
-          res.status(404).json({ message: 'data not found to delete', todo});
-        } else {
-          deletedTodo = todo;
-          return todo.destroy()
-        }
-      })
+    let deletedTodo = req.todo;
+    req.todo.destroy()
       .then(info => {
         res.status(200).json({ message: 'data deleted', deletedTodo, info });
       })
