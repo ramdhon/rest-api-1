@@ -9,7 +9,7 @@ router.use(Authenticate)
 
 router.get('/', TodoController.findAll);
 router.post('/', TodoController.create);
-router.get('/:id', TodoController.findOne);
+router.get('/:id', AuthorizeAuthUser, TodoController.findOne);
 router.put('/:id', AuthorizeAuthUser, TodoController.update);
 router.patch('/:id', AuthorizeAuthUser, TodoController.update);
 router.delete('/:id', AuthorizeAuthUser, TodoController.delete);

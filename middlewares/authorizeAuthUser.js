@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   Todo.findByPk(req.params.id)
     .then(todo => {
       if (!todo) {
-        res.status(404).json({ message: 'not found to authorize', todo });
+        res.status(404).json({ message: 'data not found', todo });
       } else {
         if (todo.UserId != req.decoded.id) {
           res.status(401).json({ message: 'unauthorized to access'});

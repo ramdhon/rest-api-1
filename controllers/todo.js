@@ -40,21 +40,7 @@ class Controller {
   }
 
   static findOne(req, res) {
-    Todo
-      .findByPk(req.params.id, {
-        include: [User],
-      })
-      .then(todo => {
-        if (!todo) {
-          res.status(404).json({ message: 'data not found', todo});
-        } else {
-          res.status(200).json({ message: 'data found', todo});
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ message: 'internal server error', err });
-      })
+    res.status(200).json({ message: 'data found', todo: req.todo});
   }
 
   static update(req, res) {
